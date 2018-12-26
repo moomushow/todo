@@ -5,19 +5,20 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-        เพิ่มรายการ
+        แก้ไขรายการ
         </h4>
     </div>
     <div class="panel-body">
-        <form action="/store" method="post" role="form">
+        <form action="/update" method="post" role="form">
             @csrf
+            <input type="hidden" name="product_id" value="{{product->product_id}}">
             <div class="form-group">
                 <label for="inputName">กรอกชื่อรายการ :: </label>
-                <input type="text" name="name" placeholder="ชื่อรายการ" class="form-control">
+                <input type="text" name="name" value="{{$product->product_name}}" placeholder="ชื่อรายการ" class="form-control">
             </div>
             <div class="form-group">
                 <label for="selectCategory">เลือกหมวดหมู่ :: </label>
-                <select name="category_id" id="" class="form-control">
+                <select name="category_id" id="" selected={{$category->category_name}} class="form-control">
                     @foreach($categories as $category)
                         <option value="{{$category->category_id}}">{{$category->category_id}}-{{$category->category_name}}</option>
                     @endforeach
